@@ -73,9 +73,6 @@ Plug 'RRethy/nvim-base16'
 " Displays hex color on the fly
 Plug 'ap/vim-css-color'
 
-" Add bottom airline themes
-Plug 'bling/vim-airline'
-
 " Adds editorconfig configuration
 Plug 'editorconfig/editorconfig-vim'
 
@@ -230,7 +227,16 @@ call plug#end()
 " }}}
 
 " Plugin Config neoclid/coc.nvim {{{
-let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 'coc-eslint' ] 
+let g:coc_global_extensions = [
+      \ 'coc-html',
+      \ 'coc-css',
+      \ 'coc-json',
+      \ 'coc-tsserver',
+      \ 'coc-tslint-plugin',
+      \ 'coc-prettier',
+      \ 'coc-eslint',
+      \ 'coc-rust-analyzer'
+      \ ]
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -300,7 +306,7 @@ EOF
 " Plugin Config nvim-treesitter/nvim-treesitter {{{
 lua << EOF
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'typescript', 'query', 'markdown', 'javascript', 'json', 'vim' },
+  ensure_installed = { 'typescript', 'query', 'markdown', 'javascript', 'json', 'vim', 'rust', 'lua' },
   sync_install = false,
   highlight = {
     enable = true,
@@ -314,7 +320,6 @@ EOF
 " Plugin Config xiyaowong/nvim-transparent {{{
 lua << EOF
 require("transparent").setup({
-  enable = false, -- boolean: enable transparent
   extra_groups = { -- table/string: additional groups that should be cleared
     -- In particular, when you set it to 'all', that means all available groups
 
@@ -326,7 +331,7 @@ require("transparent").setup({
     "BufferLineSeparator",
     "BufferLineIndicatorSelected",
   },
-  exclude = {}, -- table: groups you don't want to clear
+  exclude_groups = {}, -- table: groups you don't want to clear
 })
 EOF
 "}}}

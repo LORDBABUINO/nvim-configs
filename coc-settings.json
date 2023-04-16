@@ -1,5 +1,7 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["typescript"],
+  "[html][css][javascript][typescript][json]": {
+    "coc.preferences.formatOnSave": true
+  },
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "eslint.autoFixOnSave": true
