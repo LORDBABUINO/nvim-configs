@@ -58,13 +58,12 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"
 " Plug 'rust-lang/rust.vim'
 " Plug 'tomlion/vim-solidity'
 " Plug 'vim-scripts/VimClojure'
-" Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 " Plug 'mlaursen/vim-react-snippets'
 " Plug 'mxw/vim-jsx'
 " Plug 'PotatoesMaster/i3-vim-syntax'
 " Plug 'styled-components/vim-styled-components', { 'branch' : 'main' }
 " Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 
 " Color theme
 Plug 'ellisonleao/gruvbox.nvim'
@@ -74,6 +73,7 @@ Plug 'RRethy/nvim-base16'
 Plug 'ap/vim-css-color'
 
 " Add bottom airline themes
+Plug 'vim-airline/vim-airline-themes'
 Plug 'bling/vim-airline'
 
 " Adds editorconfig configuration
@@ -135,6 +135,8 @@ Plug 'puremourning/vimspector'
 
 Plug 'xiyaowong/nvim-transparent'
 
+Plug 'github/copilot.vim'
+
 call plug#end()
 " }}}
 
@@ -146,6 +148,7 @@ call plug#end()
 
 " Plugin Config preservim/nerdtree {{{
   map <leader>n :NERDTreeToggle<CR>
+  let NERDTreeWinSize=50
   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     if has('nvim')
         let NERDTreeBookmarksFile = stdpath('data') . '/NERDTreeBookmarks'
@@ -230,7 +233,7 @@ call plug#end()
 " }}}
 
 " Plugin Config neoclid/coc.nvim {{{
-let g:coc_global_extensions = [ 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 'coc-eslint' ] 
+let g:coc_global_extensions = [ 'coc-rust-analyzer', 'coc-solidity', 'coc-html', 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 'coc-eslint', 'coc-pyright' ] 
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -265,6 +268,12 @@ endfunction
 
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
+" Format python files on save
+aug python
+  au!
+  au BufWrite *.py call CocAction('format')
+aug END
 " }}}
 
 " Plugin Config kristijanhusak/vim-dadbod-ui {{{
@@ -314,7 +323,6 @@ EOF
 " Plugin Config xiyaowong/nvim-transparent {{{
 lua << EOF
 require("transparent").setup({
-  enable = false, -- boolean: enable transparent
   extra_groups = { -- table/string: additional groups that should be cleared
     -- In particular, when you set it to 'all', that means all available groups
 
@@ -326,7 +334,7 @@ require("transparent").setup({
     "BufferLineSeparator",
     "BufferLineIndicatorSelected",
   },
-  exclude = {}, -- table: groups you don't want to clear
+  exclude_groups = {}, -- table: groups you don't want to clear
 })
 EOF
 "}}}
