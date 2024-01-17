@@ -233,7 +233,18 @@ call plug#end()
 " }}}
 
 " Plugin Config neoclid/coc.nvim {{{
-let g:coc_global_extensions = [ 'coc-rust-analyzer', 'coc-solidity', 'coc-html', 'coc-json', 'coc-tsserver', 'coc-tslint-plugin', 'coc-prettier', 'coc-eslint', 'coc-pyright' ] 
+let g:coc_global_extensions = [
+      \ 'coc-html',
+      \ 'coc-css',
+      \ 'coc-json',
+      \ 'coc-tsserver',
+      \ 'coc-tslint-plugin',
+      \ 'coc-prettier',
+      \ 'coc-eslint',
+      \ 'coc-rust-analyzer',
+      \ 'coc-solidity',
+      \ 'coc-pyright',
+      \ ]
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -309,7 +320,7 @@ EOF
 " Plugin Config nvim-treesitter/nvim-treesitter {{{
 lua << EOF
 require('nvim-treesitter.configs').setup({
-  ensure_installed = { 'typescript', 'query', 'markdown', 'javascript', 'json', 'vim' },
+  ensure_installed = { 'typescript', 'query', 'markdown', 'javascript', 'json', 'vim', 'rust', 'lua' },
   sync_install = false,
   highlight = {
     enable = true,

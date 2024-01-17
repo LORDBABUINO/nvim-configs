@@ -1,5 +1,5 @@
 {
-  "[html][css][javascript][json][typescript]": {
+  "[html][css][javascript][typescript][json]": {
     "coc.preferences.formatOnSave": true
   },
   "javascript.suggest.autoImports": true,
